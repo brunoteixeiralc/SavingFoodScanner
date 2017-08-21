@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">SavingFoodScanner</string>
+    <!--<string name="app_name">SavingFoodScanner</string>-->
+    <string name="btn_barcode">Ler código de barra</string>
 </resources>
