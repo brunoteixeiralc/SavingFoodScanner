@@ -37,7 +37,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private Discount discount;
     private Toolbar toolbar;
     private ImageView img;
-    private TextView name,description,barcode;
+    private TextView name,description,barcode,quantity;
     private EditText due_date;
     private FloatingActionButton fab;
 
@@ -51,6 +51,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         toolbar =(Toolbar)findViewById(R.id.toolbar);
         name =(TextView) findViewById(R.id.name);
+        quantity =(TextView) findViewById(R.id.product_quantity);
         name.setText(discount.getName());
         description =(TextView) findViewById(R.id.description);
         description.setText(discount.getDescription());
@@ -69,6 +70,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                discount.setDue_date(due_date.getText().toString());
+                discount.setQuantity(Integer.parseInt(quantity.getText().toString()));
+                mDatabase.child("discounts").child(mDatabase.push().getKey()).setValue(discount);
                 startActivity(new Intent(ProductDetailActivity.this,SuccessActivity.class));
             }
         });

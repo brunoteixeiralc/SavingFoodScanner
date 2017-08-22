@@ -19,7 +19,7 @@ import br.com.savingfoodscanner.R;
 
 public class DueDateCalendarActivity extends Activity implements OnDateSelectedListener {
 
-    private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
+    private static final DateFormat FORMATTER = new SimpleDateFormat("dd/MM/yyyy");
     private MaterialCalendarView widget;
 
     @Override

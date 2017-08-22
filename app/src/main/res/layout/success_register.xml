@@ -9,16 +9,16 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_gravity="top"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="2"
         app:lottie_fileName="checked_done_.json"
-        app:lottie_loop="false"
+        app:lottie_loop="true"
         app:lottie_autoPlay="false"/>
 
     <TextView
-        android:text="Desconto cadastrado no Saving Foods!"
+        android:text="Desconto cadastrado no Saving Foods. Agora todos os usuários poderão ver seu desconto!"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:layout_height="0dp"

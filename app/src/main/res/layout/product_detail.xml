@@ -31,7 +31,7 @@
                 <ImageView
                     android:id="@+id/img"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="200dp"
                     app:layout_collapseMode="parallax"
                     android:scaleType="fitXY"/>
 
@@ -99,53 +99,64 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:padding="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
-             <TextView
-               android:id="@+id/name"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="8dp"
-               android:textSize="16dp"
-               fontPath="fonts/Nexa-Bold.ttf"
-               android:textStyle="normal|bold"
-               android:padding="5dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name"
+                        android:padding="5dp"
+                        android:textColor="@android:color/background_dark"/>
 
-             <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="@string/description"
-               android:padding="5dp"/>
+                     <TextView
+                       android:id="@+id/name"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:textSize="16dp"
+                       fontPath="fonts/Nexa-Bold.ttf"
+                       android:textStyle="normal|bold"
+                       android:padding="5dp"
+                       android:textColor="@android:color/background_dark"/>
 
-             <TextView
-               android:id="@+id/description"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="8dp"
-               android:textSize="16dp"
-               fontPath="fonts/Nexa-Bold.ttf"
-               android:textStyle="normal|bold"
-               android:padding="5dp"/>
+                     <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="@string/description"
+                       android:padding="5dp"
+                       android:textColor="@android:color/background_dark"/>
 
-           <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="@string/barcode"
-              android:padding="5dp"/>
+                     <TextView
+                       android:id="@+id/description"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:textSize="14dp"
+                       fontPath="fonts/Nexa-Bold.ttf"
+                       android:textStyle="normal|bold"
+                       android:padding="5dp"
+                       android:textColor="@android:color/background_dark"/>
 
-            <TextView
-              android:id="@+id/barcode"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="8dp"
-              android:textSize="16dp"
-              fontPath="fonts/Nexa-Bold.ttf"
-              android:textStyle="normal|bold"
-              android:padding="5dp"/>
+                   <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@string/barcode"
+                      android:padding="5dp"
+                      android:textColor="@android:color/background_dark"/>
+
+                    <TextView
+                      android:id="@+id/barcode"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textSize="14dp"
+                      fontPath="fonts/Nexa-Bold.ttf"
+                      android:textStyle="normal|bold"
+                      android:padding="5dp"
+                      android:textColor="@android:color/background_dark"/>
+
+                 </LinearLayout>
 
             </LinearLayout>
 

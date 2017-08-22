@@ -20,12 +20,12 @@
 
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
-        <item name="android:textColorHint">@color/colorFlatGray</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textColorHint">@android:color/background_dark</item>
+        <item name="android:textSize">14sp</item>
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorAccent">@color/colorFlatGray</item>
-        <item name="colorControlNormal">@color/colorFlatGray</item>
-        <item name="colorControlActivated">@color/colorFlatGray</item>
+        <item name="colorAccent">@android:color/background_dark</item>
+        <item name="colorControlNormal">@android:color/background_dark</item>
+        <item name="colorControlActivated">@android:color/background_dark</item>
     </style>
 
 </resources>
