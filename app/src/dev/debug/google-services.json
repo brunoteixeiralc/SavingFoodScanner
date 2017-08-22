@@ -10,6 +10,37 @@
       "client_info": {
         "mobilesdk_app_id": "1:887014558905:android:f66f892c0dc79c5c",
         "android_client_info": {
+          "package_name": "br.com.savingfood.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887014558905-rvu827821i0l0bisjgv5g0ve7hpg18eg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa18uVy6pjs2HK_8s9vOBLM7WOh71s5Hk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887014558905:android:d6914474f830d0f9",
+        "android_client_info": {
           "package_name": "br.com.savingfoodscanner.debug"
         }
       },

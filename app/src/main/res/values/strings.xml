@@ -1,4 +1,9 @@
 <resources>
     <!--<string name="app_name">SavingFoodScanner</string>-->
     <string name="btn_barcode">Ler código de barra</string>
+    <string name="product_quantity">Quantidade de produtos</string>
+    <string name="due_date">Data de validade</string>
+    <string name="description">Descrição</string>
+    <string name="barcode">Código de barra</string>
+    <string name="name">Nome</string>
 </resources>

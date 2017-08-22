@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="br.com.savingfoodscanner.MainActivity"
+    tools:context="br.com.savingfoodscanner.activity.MainActivity"
     android:background="@color/colorPrimary">
 
     <TextView
         android:text="Saving Foods Scanner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
         android:id="@+id/textView4"
         android:textSize="24sp"
         android:textColor="@android:color/background_light"
@@ -27,7 +28,8 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         app:srcCompat="@drawable/bar_code"
         android:id="@+id/imageView2"
         android:layout_marginTop="48dp" />
@@ -37,7 +39,8 @@
         android:id="@+id/textView5"
         android:textColor="@android:color/background_light"
         android:textSize="20sp"
-        android:layout_height="200dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:textAlignment="center"
         android:layout_margin="16dp" />
@@ -46,7 +49,8 @@
         android:layout_margin="8dp"
         android:id="@+id/btn_enter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
         android:background="@drawable/rounded_bg"
         android:text="@string/btn_barcode"
         android:textColor="@color/colorAccent" />
