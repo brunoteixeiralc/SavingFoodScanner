@@ -1,7 +1,11 @@
 package br.com.savingfoodscanner.model;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by brunolemgruber on 18/07/16.
@@ -9,15 +13,15 @@ import java.util.List;
 
 public class Discount implements Serializable {
 
-    private String name;
-
     private String uid;
 
-    private Long bar_code;
+    private String name;
 
-    private String category;
+    private String bar_code;
 
     private String description;
+
+    private String due_date;
 
     private String img;
 
@@ -25,42 +29,50 @@ public class Discount implements Serializable {
 
     private Double old_price;
 
-    private String short_unit_measurement;
-
-    private String unit_measurement;
-
-    private String unit_quantity;
-
-    private Double wholesale_price;
-
     private int views;
 
     private int quantity;
 
-    private boolean inCart;
-
     private int percent;
-
-    private String due_date;
-
-    private String fieldToFilter;
 
     private List<String> mStores;
 
-    public Long getBar_code() {
-        return bar_code;
+    public Discount() {
     }
 
-    public void setBar_code(Long bar_code) {
+    public Discount(String uid, String name, String bar_code, String img,
+                    String description,Double price,Double old_price,String due_date, int views,
+                    int quantity,int percent) {
+        this.uid = uid;
+        this.name = name;
         this.bar_code = bar_code;
+        this.description = description;
+        this.img = img;
+        this.price = price;
+        this.old_price = old_price;
+        this.views = views;
+        this.quantity = quantity;
+        this.percent = percent;
+        this.due_date = due_date;
+
     }
 
-    public String getCategory() {
-        return category;
-    }
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("uid", uid);
+        result.put("name", name);
+        result.put("bar_code", bar_code);
+        result.put("description", description);
+        result.put("img", img);
+        result.put("price", price);
+        result.put("old_price", old_price);
+        result.put("views", views);
+        result.put("quantity", quantity);
+        result.put("percent", percent);
+        result.put("due_date", due_date);
 
-    public void setCategory(String category) {
-        this.category = category;
+        return result;
     }
 
     public String getDescription() {
@@ -79,30 +91,6 @@ public class Discount implements Serializable {
         this.img = img;
     }
 
-    public String getShort_unit_measurement() {
-        return short_unit_measurement;
-    }
-
-    public void setShort_unit_measurement(String short_unit_measurement) {
-        this.short_unit_measurement = short_unit_measurement;
-    }
-
-    public String getUnit_measurement() {
-        return unit_measurement;
-    }
-
-    public void setUnit_measurement(String unit_measurement) {
-        this.unit_measurement = unit_measurement;
-    }
-
-    public String getUnit_quantity() {
-        return unit_quantity;
-    }
-
-    public void setUnit_quantity(String unit_quantity) {
-        this.unit_quantity = unit_quantity;
-    }
-
     public String getName() {
         return name;
     }
@@ -111,28 +99,12 @@ public class Discount implements Serializable {
         this.name = name;
     }
 
-    public boolean isInCart() {
-        return inCart;
-    }
-
-    public void setInCart(boolean inCart) {
-        this.inCart = inCart;
-    }
-
     public Double getPrice() {
         return price;
     }
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public Double getWholesale_price() {
-        return wholesale_price;
-    }
-
-    public void setWholesale_price(Double wholesale_price) {
-        this.wholesale_price = wholesale_price;
     }
 
     public int getQuantity() {
@@ -175,27 +147,27 @@ public class Discount implements Serializable {
         this.percent = percent;
     }
 
-    public String getDue_date() {
-        return due_date;
-    }
-
-    public void setDue_date(String due_date) {
-        this.due_date = due_date;
-    }
-
-    public String getFieldToFilter() {
-        return fieldToFilter;
-    }
-
-    public void setFieldToFilter(String fieldToFilter) {
-        this.fieldToFilter = fieldToFilter;
-    }
-
     public List<String> getmStores() {
         return mStores;
     }
 
     public void setmStores(List<String> mStores) {
         this.mStores = mStores;
+    }
+
+    public String getBar_code() {
+        return bar_code;
+    }
+
+    public void setBar_code(String bar_code) {
+        this.bar_code = bar_code;
+    }
+
+    public String getDue_date() {
+        return due_date;
+    }
+
+    public void setDue_date(String due_date) {
+        this.due_date = due_date;
     }
 }

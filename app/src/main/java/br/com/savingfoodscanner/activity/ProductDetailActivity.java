@@ -24,7 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.savingfoodscanner.R;
+import br.com.savingfoodscanner.firebase.FirebaseServices;
 import br.com.savingfoodscanner.model.Discount;
+import br.com.savingfoodscanner.model.Product;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -33,8 +35,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
-    private Discount discount;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private Discount newDiscount;
     private Toolbar toolbar;
     private ImageView img;
     private TextView name,description,barcode,quantity;
@@ -46,17 +48,16 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_detail);
 
-        setMockProduct();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        setDiscount();
 
         toolbar =(Toolbar)findViewById(R.id.toolbar);
         name =(TextView) findViewById(R.id.name);
         quantity =(TextView) findViewById(R.id.product_quantity);
-        name.setText(discount.getName());
+        name.setText(newDiscount.getName());
         description =(TextView) findViewById(R.id.description);
-        description.setText(discount.getDescription());
+        description.setText(newDiscount.getDescription());
         barcode =(TextView) findViewById(R.id.barcode);
-        barcode.setText(String.valueOf(discount.getBar_code()));
+        barcode.setText(newDiscount.getBar_code());
         due_date = (EditText) findViewById(R.id.due_date);
         due_date.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -70,18 +71,19 @@ public class ProductDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                discount.setDue_date(due_date.getText().toString());
-                discount.setQuantity(Integer.parseInt(quantity.getText().toString()));
-                mDatabase.child("discounts").child(mDatabase.push().getKey()).setValue(discount);
-                startActivity(new Intent(ProductDetailActivity.this,SuccessActivity.class));
+                newDiscount.setDue_date(due_date.getText().toString());
+                newDiscount.setQuantity(Integer.parseInt(quantity.getText().toString()));
+
+                FirebaseServices.saveDiscount(mDatabase,newDiscount,mDatabase.getRef().push().getKey());
+                startActivity(new Intent(ProductDetailActivity.this,ChooseLocationActivity.class));
             }
         });
 
-        toolbar.setTitle(discount.getName());
+        toolbar.setTitle(newDiscount.getName());
         img = (ImageView)findViewById(R.id.img);
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-        Glide.with(ProductDetailActivity.this).load(discount.getImg()).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)).listener(new RequestListener<Drawable>() {
+        Glide.with(ProductDetailActivity.this).load(newDiscount.getImg()).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object o, Target<Drawable> target, boolean b) {
                 return false;
@@ -94,16 +96,20 @@ public class ProductDetailActivity extends AppCompatActivity {
         }).into(img);
     }
 
-    private void setMockProduct(){
-        discount = new Discount();
-        discount.setName("Nissin Lámen");
-        discount.setDescription("Miojo Nisson Lámen de picanha");
-        discount.setImg("https://firebasestorage.googleapis.com/v0/b/savingfood-debug-2f54f.appspot.com/o/product%2Fnissin_lamen_picanha%2Fimagem.png?alt=media&token=629aada4-7be2-4161-9345-fa55030e4f2e");
-        discount.setBar_code(7891079011775l);
-        discount.setPercent(70);
-        discount.setOld_price((double) 10);
-        discount.setPrice((double) 3);
-        discount.setViews(0);
+    private void setDiscount(){
+
+        Product p = new Product();
+        p = (Product) getIntent().getSerializableExtra("product");
+
+        newDiscount = new Discount();
+        newDiscount.setName(p.getName());
+        newDiscount.setDescription(p.getDescription());
+        newDiscount.setImg(p.getImg());
+        newDiscount.setBar_code(p.getBar_code());
+        newDiscount.setPercent(70);
+        newDiscount.setOld_price((double) 10);
+        newDiscount.setPrice((double) 3);
+        newDiscount.setViews(0);
     }
 
     @Override
