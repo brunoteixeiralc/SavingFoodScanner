@@ -14,7 +14,8 @@
         android:layout_weight="1"
         app:srcCompat="@drawable/marker"
         android:id="@+id/imageView2"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="35dp"
+        android:padding="10dp"/>
 
     <TextView
         android:text="Você está no supermercado da rede Roldão no endereço Av. Cavalheiro Nami Jafet, 343 - Vl. Industrial, Mogi das Cruzes - SP, correto?"
