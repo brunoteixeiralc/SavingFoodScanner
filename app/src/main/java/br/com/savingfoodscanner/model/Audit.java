@@ -6,8 +6,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import static br.com.savingfoodscanner.R.id.img;
-
 /**
  * Created by brunolemgruber on 01/09/17.
  */

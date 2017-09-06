@@ -2,9 +2,9 @@ package br.com.savingfoodscanner.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,9 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.angmarch.views.NiceSpinner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import br.com.savingfoodscanner.R;
@@ -71,6 +69,11 @@ public class ChooseLocationActivity extends Activity {
                 FirebaseServices.saveAudit(mDatabase,audit,audit.getUid());
 
                 startActivity(new Intent(ChooseLocationActivity.this,SuccessActivity.class));
+
+                SharedPreferences.Editor editor = getSharedPreferences("sfScanner", MODE_PRIVATE).edit();
+                editor.putString("network", networkSelected);
+                editor.putString("store", storeSelected);
+                editor.apply();
             }
         });
 

@@ -24,6 +24,7 @@
         <activity android:name=".activity.DueDateCalendarActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.SuccessActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.ChooseLocationActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MessageLocationActivity"  android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

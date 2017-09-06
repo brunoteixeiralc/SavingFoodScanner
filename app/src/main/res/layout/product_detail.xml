@@ -174,7 +174,7 @@
         app:elevation="6dp"
         app:backgroundTint="@color/colorPrimaryDark"
         android:src="@drawable/check"
-        app:layout_anchor="@id/appbarlayout"
+        app:layout_anchor="@id/scroll"
         app:layout_anchorGravity="bottom|right|end"/>
 
 </android.support.design.widget.CoordinatorLayout>

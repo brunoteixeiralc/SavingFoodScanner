@@ -2,6 +2,7 @@ package br.com.savingfoodscanner.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.savingfoodscanner.R;
-import br.com.savingfoodscanner.firebase.FirebaseServices;
 import br.com.savingfoodscanner.model.Discount;
 import br.com.savingfoodscanner.model.Product;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -75,9 +75,22 @@ public class ProductDetailActivity extends AppCompatActivity {
                 newDiscount.setQuantity(Integer.parseInt(quantity.getText().toString()));
                 newDiscount.setUid(mDatabase.getRef().push().getKey());
 
-                Intent i = new Intent(ProductDetailActivity.this,ChooseLocationActivity.class);
-                i.putExtra("discount",newDiscount);
-                startActivity(i);
+                SharedPreferences prefs = getSharedPreferences("sfScanner", MODE_PRIVATE);
+                String network = prefs.getString("network", "");
+                String store = prefs.getString("store", "");
+
+                if(network.isEmpty() && store.isEmpty()){
+                    Intent i = new Intent(ProductDetailActivity.this,ChooseLocationActivity.class);
+                    i.putExtra("discount",newDiscount);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(ProductDetailActivity.this,MessageLocationActivity.class);
+                    i.putExtra("discount",newDiscount);
+                    i.putExtra("network",network);
+                    i.putExtra("store",store);
+                    startActivity(i);
+                }
+
             }
         });
 

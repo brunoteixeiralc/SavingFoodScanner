@@ -29,7 +29,9 @@ public class SuccessActivity extends Activity {
         btnBarCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SuccessActivity.this,MainActivity.class));
+                Intent i = new Intent(SuccessActivity.this,MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
             }
         });
 
