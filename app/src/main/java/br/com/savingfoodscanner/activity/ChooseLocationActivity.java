@@ -53,7 +53,9 @@ public class ChooseLocationActivity extends Activity {
 
         Dialogs.openDialog(this,"Carregando redes.");
         netWorkDataSet = new ArrayList<>();
+        netWorkDataSet.add("Selecione uma rede");
         storeDataSet = new ArrayList<>();
+        storeDataSet.add("Selecione uma loja");
         getNetwork();
 
         discount = (Discount) getIntent().getSerializableExtra("discount");
@@ -76,10 +78,14 @@ public class ChooseLocationActivity extends Activity {
         networkSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                networkSelected = netWorkDataSet.get(i);
                 storeDataSet.clear();
-                for (Store s : networks.get(i).getStores()){
-                    storeDataSet.add(s.getName() + " " +  s.getAddress());
+                if(i != 0){
+                    networkSelected = netWorkDataSet.get(i);
+                    for (Store s : networks.get(i - 1).getStores()){
+                        storeDataSet.add(s.getName() + " " +  s.getAddress());
+                    }
+                }else{
+                    storeDataSet.add("Selecione uma loja");
                 }
                 storeSpinner.attachDataSource(storeDataSet);
             }
@@ -123,6 +129,7 @@ public class ChooseLocationActivity extends Activity {
                         networks.add(network);
                     }
                     networkSpinner.attachDataSource(netWorkDataSet);
+                    storeSpinner.attachDataSource(storeDataSet);
                     Dialogs.closeDialog(ChooseLocationActivity.this);
                 }
             }

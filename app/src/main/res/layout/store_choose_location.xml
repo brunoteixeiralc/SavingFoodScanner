@@ -45,7 +45,7 @@
             android:id="@+id/networkSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hideArrow="false" />
+            app:hideArrow="false"/>
 
         <TextView
             android:layout_width="fill_parent"
@@ -59,7 +59,8 @@
             android:id="@+id/storeSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hideArrow="false" />
+            app:hideArrow="false"
+            app:dropDownListPaddingBottom="40dp"/>
 
     </LinearLayout>
 

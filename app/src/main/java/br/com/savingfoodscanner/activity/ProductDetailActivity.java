@@ -77,7 +77,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 Intent i = new Intent(ProductDetailActivity.this,ChooseLocationActivity.class);
                 i.putExtra("discount",newDiscount);
-                startActivity(new Intent(ProductDetailActivity.this,ChooseLocationActivity.class));
+                startActivity(i);
             }
         });
 
