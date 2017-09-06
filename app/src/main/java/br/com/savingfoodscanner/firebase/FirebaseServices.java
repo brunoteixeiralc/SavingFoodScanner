@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.savingfoodscanner.model.Audit;
 import br.com.savingfoodscanner.model.Discount;
 import br.com.savingfoodscanner.model.Product;
 
@@ -28,6 +29,14 @@ public final class FirebaseServices {
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/discounts/" + key, discountValues);
+        databaseReference.updateChildren(childUpdates);
+    }
+
+    public static void saveAudit(DatabaseReference databaseReference, Audit audit, String key){
+        Map<String, Object> auditValues = audit.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/audit/" + key, auditValues);
         databaseReference.updateChildren(childUpdates);
     }
 }

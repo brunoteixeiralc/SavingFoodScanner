@@ -26,6 +26,21 @@ public class Store implements Serializable {
 
     private String network;
 
+    public Store(){}
+
+    public Store(String address, String close, String img, Double lat,
+                 Double lng, String name, String open, String phone,String network) {
+        this.address = address;
+        this.close = close;
+        this.img = img;
+        this.lat = lat;
+        this.network = network;
+        this.lng = lng;
+        this.name = name;
+        this.open = open;
+        this.phone = phone;
+    }
+
 
     public String getAddress() {
         return address;
@@ -98,4 +113,6 @@ public class Store implements Serializable {
     public void setNetwork(String network) {
         this.network = network;
     }
+
+
 }

@@ -73,8 +73,10 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 newDiscount.setDue_date(due_date.getText().toString());
                 newDiscount.setQuantity(Integer.parseInt(quantity.getText().toString()));
+                newDiscount.setUid(mDatabase.getRef().push().getKey());
 
-                FirebaseServices.saveDiscount(mDatabase,newDiscount,mDatabase.getRef().push().getKey());
+                Intent i = new Intent(ProductDetailActivity.this,ChooseLocationActivity.class);
+                i.putExtra("discount",newDiscount);
                 startActivity(new Intent(ProductDetailActivity.this,ChooseLocationActivity.class));
             }
         });

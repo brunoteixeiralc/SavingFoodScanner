@@ -42,7 +42,7 @@
             android:textColor="@android:color/white"/>
 
         <org.angmarch.views.NiceSpinner
-            android:id="@+id/test_nice_spinner"
+            android:id="@+id/networkSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hideArrow="false" />
@@ -56,7 +56,7 @@
             android:textColor="@android:color/white"/>
 
         <org.angmarch.views.NiceSpinner
-            android:id="@+id/test_nice_spinner2"
+            android:id="@+id/storeSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hideArrow="false" />

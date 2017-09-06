@@ -28,4 +28,12 @@ public class Network implements Serializable{
     public void setStores(List<Store> stores) {
         this.stores = stores;
     }
+
+    public Network(){}
+
+    public Network(String name, List<Store> stores) {
+        this.name = name;
+        this.stores = stores;
+
+    }
 }
