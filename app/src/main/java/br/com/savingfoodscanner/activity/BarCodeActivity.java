@@ -8,6 +8,8 @@ import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.CompoundBarcodeView;
 
 import br.com.savingfoodscanner.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by brunolemgruber on 07/01/16.
@@ -16,15 +18,16 @@ public class BarCodeActivity extends Activity implements
         CompoundBarcodeView.TorchListener  {
 
     private CaptureManager capture;
-    private CompoundBarcodeView barcodeScannerView;
+
+    @BindView(R.id.zxing_barcode_scanner)
+    CompoundBarcodeView barcodeScannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.bar_code);
+        ButterKnife.bind(this);
 
-        barcodeScannerView = (CompoundBarcodeView)findViewById(R.id.zxing_barcode_scanner);
         barcodeScannerView.setTorchListener(this);
         capture = new CaptureManager(this, barcodeScannerView);
         capture.initializeFromIntent(getIntent(), savedInstanceState);
