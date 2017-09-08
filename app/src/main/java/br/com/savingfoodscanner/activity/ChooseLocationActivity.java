@@ -31,10 +31,6 @@ import br.com.savingfoodscanner.model.Network;
 import br.com.savingfoodscanner.model.Store;
 import br.com.savingfoodscanner.utils.DateTime;
 import br.com.savingfoodscanner.utils.Dialogs;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnItemSelected;
 
 /**
  * Created by brunolemgruber on 01/09/17.
@@ -42,113 +38,76 @@ import butterknife.OnItemSelected;
 
 public class ChooseLocationActivity extends Activity {
 
-    @BindView(R.id.btn_save)
-    Button btnSaveDiscount;
-    @BindView(R.id.networkSpinner)
-    NiceSpinner networkSpinner;
-    @BindView(R.id.storeSpinner)
-    NiceSpinner storeSpinner;
-
+    private Button btnSaveDiscount;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-
     private Discount discount;
+    private NiceSpinner networkSpinner,storeSpinner;
     private List<Network> networks = new ArrayList<>();
     private String networkSelected,storeSelected;
-    private List<String> netWorkDataSet = new ArrayList<>();
-    private List<String> storeDataSet = new ArrayList<>();
+    private List<String> netWorkDataSet,storeDataSet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_choose_location);
-        ButterKnife.bind(this);
 
         Dialogs.openDialog(this,"Carregando redes.");
+        netWorkDataSet = new ArrayList<>();
         netWorkDataSet.add("Selecione uma rede");
+        storeDataSet = new ArrayList<>();
         storeDataSet.add("Selecione uma loja");
         getNetwork();
 
         discount = (Discount) getIntent().getSerializableExtra("discount");
 
-//        btnSaveDiscount.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FirebaseServices.saveDiscount(mDatabase,discount,discount.getUid());
-//
-//                Audit audit = new Audit(mDatabase.push().getKey(),discount.getBar_code(),discount.getName(), DateTime.formatToString("dd/MM/yyyy HH:mm:ss",new Date()),networkSelected,
-//                        storeSelected,discount.getOld_price(),discount.getPrice());
-//                FirebaseServices.saveAudit(mDatabase,audit,audit.getUid());
-//
-//                startActivity(new Intent(ChooseLocationActivity.this,SuccessActivity.class));
-//            }
-//        });
+        btnSaveDiscount = (Button) findViewById(R.id.btn_save);
+        btnSaveDiscount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseServices.saveDiscount(mDatabase,discount,discount.getUid());
 
-//        networkSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                storeDataSet.clear();
-//                if(i != 0){
-//                    networkSelected = netWorkDataSet.get(i);
-//                    for (Store s : networks.get(i - 1).getStores()){
-//                        storeDataSet.add(s.getName() + " " +  s.getAddress());
-//                    }
-//                }else{
-//                    storeDataSet.add("Selecione uma loja");
-//                }
-//                storeSpinner.attachDataSource(storeDataSet);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
+                Audit audit = new Audit(mDatabase.push().getKey(),discount.getBar_code(),discount.getName(), DateTime.formatToString("dd/MM/yyyy HH:mm:ss",new Date()),networkSelected,
+                        storeSelected,discount.getOld_price(),discount.getPrice());
+                FirebaseServices.saveAudit(mDatabase,audit,audit.getUid());
 
-//        storeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                storeSelected = storeDataSet.get(i);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
-
-    }
-
-    @OnItemSelected(R.id.networkSpinner)
-    public void networkSelected(int position){
-
-        storeDataSet.clear();
-        if(position != 0){
-            networkSelected = netWorkDataSet.get(position);
-            for (Store s : networks.get(position - 1).getStores()){
-                storeDataSet.add(s.getName() + " " +  s.getAddress());
+                startActivity(new Intent(ChooseLocationActivity.this,SuccessActivity.class));
             }
-        }else{
-            storeDataSet.add("Selecione uma loja");
-        }
-        storeSpinner.attachDataSource(storeDataSet);
+        });
 
-    }
+        networkSpinner= (NiceSpinner) findViewById(R.id.networkSpinner);
+        networkSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                storeDataSet.clear();
+                if(i != 0){
+                    networkSelected = netWorkDataSet.get(i);
+                    for (Store s : networks.get(i - 1).getStores()){
+                        storeDataSet.add(s.getName() + " " +  s.getAddress());
+                    }
+                }else{
+                    storeDataSet.add("Selecione uma loja");
+                }
+                storeSpinner.attachDataSource(storeDataSet);
+            }
 
-    @OnItemSelected(R.id.storeSpinner)
-    public void storeSelected(int position){
-        storeSelected = storeDataSet.get(position);
-    }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-    @OnClick(R.id.btn_save)
-    public void saveDiscount(View view){
+            }
+        });
+        storeSpinner = (NiceSpinner) findViewById(R.id.storeSpinner);
+        storeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                storeSelected = storeDataSet.get(i);
+            }
 
-        FirebaseServices.saveDiscount(mDatabase,discount,discount.getUid());
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        Audit audit = new Audit(mDatabase.push().getKey(),discount.getBar_code(),discount.getName(), DateTime.formatToString("dd/MM/yyyy HH:mm:ss",new Date()),networkSelected,
-                storeSelected,discount.getOld_price(),discount.getPrice());
-        FirebaseServices.saveAudit(mDatabase,audit,audit.getUid());
+            }
+        });
 
-        startActivity(new Intent(ChooseLocationActivity.this,SuccessActivity.class));
     }
 
     private void getNetwork(){
