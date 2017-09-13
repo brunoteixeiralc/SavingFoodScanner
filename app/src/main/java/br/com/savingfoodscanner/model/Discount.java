@@ -4,7 +4,6 @@ import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,14 +34,17 @@ public class Discount implements Serializable {
 
     private int percent;
 
-    private List<String> mStores;
+    private String network;
+
+    private String store;
+
 
     public Discount() {
     }
 
     public Discount(String uid, String name, String bar_code, String img,
                     String description,Double price,Double old_price,String due_date, int views,
-                    int quantity,int percent) {
+                    int quantity,int percent, String network, String store) {
         this.uid = uid;
         this.name = name;
         this.bar_code = bar_code;
@@ -54,6 +56,8 @@ public class Discount implements Serializable {
         this.quantity = quantity;
         this.percent = percent;
         this.due_date = due_date;
+        this.store = store;
+        this.network = network;
 
     }
 
@@ -71,8 +75,26 @@ public class Discount implements Serializable {
         result.put("quantity", quantity);
         result.put("percent", percent);
         result.put("due_date", due_date);
+        result.put("network", network);
+        result.put("store", store);
 
         return result;
+    }
+
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
+    }
+
+    public String getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(String network) {
+        this.network = network;
     }
 
     public String getDescription() {
@@ -145,14 +167,6 @@ public class Discount implements Serializable {
 
     public void setPercent(int percent) {
         this.percent = percent;
-    }
-
-    public List<String> getmStores() {
-        return mStores;
-    }
-
-    public void setmStores(List<String> mStores) {
-        this.mStores = mStores;
     }
 
     public String getBar_code() {

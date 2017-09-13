@@ -43,7 +43,7 @@ public class MessageLocationActivity extends Activity {
 
         message = (TextView) findViewById(R.id.message);
         if(network != null && store != null){
-            message.setText("VocÊ está no supermercado da rede  " + network
+            message.setText("Você está no supermercado da rede  " + network
             + " no endereço " + store + " , correto ?");
         }
 
@@ -63,6 +63,8 @@ public class MessageLocationActivity extends Activity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                discount.setNetwork(network);
+                discount.setStore(store);
                 FirebaseServices.saveDiscount(mDatabase,discount,discount.getUid());
 
                 Audit audit = new Audit(mDatabase.push().getKey(),discount.getBar_code(),discount.getName(), DateTime.formatToString("dd/MM/yyyy HH:mm:ss",new Date()),network,

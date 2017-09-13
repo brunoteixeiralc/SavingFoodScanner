@@ -64,6 +64,8 @@ public class ChooseLocationActivity extends Activity {
         btnSaveDiscount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                discount.setNetwork(networkSelected);
+                discount.setStore(storeSelected);
                 FirebaseServices.saveDiscount(mDatabase,discount,discount.getUid());
 
                 Audit audit = new Audit(mDatabase.push().getKey(),discount.getBar_code(),discount.getName(), DateTime.formatToString("dd/MM/yyyy HH:mm:ss",new Date()),networkSelected,
