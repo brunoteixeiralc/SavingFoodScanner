@@ -38,13 +38,15 @@ public class Discount implements Serializable {
 
     private String store;
 
+    private String search;
+
 
     public Discount() {
     }
 
     public Discount(String uid, String name, String bar_code, String img,
                     String description,Double price,Double old_price,String due_date, int views,
-                    int quantity,int percent, String network, String store) {
+                    int quantity,int percent, String network, String store,String search) {
         this.uid = uid;
         this.name = name;
         this.bar_code = bar_code;
@@ -58,6 +60,7 @@ public class Discount implements Serializable {
         this.due_date = due_date;
         this.store = store;
         this.network = network;
+        this.search = search;
 
     }
 
@@ -77,6 +80,7 @@ public class Discount implements Serializable {
         result.put("due_date", due_date);
         result.put("network", network);
         result.put("store", store);
+        result.put("search", search);
 
         return result;
     }
@@ -183,5 +187,13 @@ public class Discount implements Serializable {
 
     public void setDue_date(String due_date) {
         this.due_date = due_date;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 }

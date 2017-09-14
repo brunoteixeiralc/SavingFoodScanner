@@ -66,6 +66,7 @@ public class MessageLocationActivity extends Activity {
             public void onClick(View view) {
                 discount.setNetwork(network);
                 discount.setStore(store);
+                discount.setSearch(network+"_"+store);
                 FirebaseServices.saveDiscount(mDatabase,discount,discount.getUid());
 
                 Audit audit = new Audit(mDatabase.push().getKey(),discount.getBar_code(),discount.getName(), DateTime.formatToString("dd/MM/yyyy HH:mm:ss",new Date()),network,
