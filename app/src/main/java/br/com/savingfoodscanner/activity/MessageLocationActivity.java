@@ -30,7 +30,7 @@ public class MessageLocationActivity extends Activity {
     private Discount discount;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private TextView message;
-    private String network,store;
+    private String network,store,address;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,11 +40,12 @@ public class MessageLocationActivity extends Activity {
         discount = (Discount) getIntent().getSerializableExtra("discount");
         network = getIntent().getStringExtra("network");
         store = getIntent().getStringExtra("store");
+        address = getIntent().getStringExtra("address");
 
         message = (TextView) findViewById(R.id.message);
         if(network != null && store != null){
             message.setText("Você está no supermercado da rede  " + network
-            + " no endereço " + store + " , correto ?");
+            + " na loja " + store + " do endereço " + address + " , correto ?");
         }
 
         btnChangeLocation = (Button) findViewById(R.id.btn_change_location);

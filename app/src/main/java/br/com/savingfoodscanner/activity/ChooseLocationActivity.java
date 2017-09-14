@@ -2,9 +2,9 @@ package br.com.savingfoodscanner.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,9 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.angmarch.views.NiceSpinner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import br.com.savingfoodscanner.R;
@@ -43,7 +41,7 @@ public class ChooseLocationActivity extends Activity {
     private Discount discount;
     private NiceSpinner networkSpinner,storeSpinner;
     private List<Network> networks = new ArrayList<>();
-    private String networkSelected,storeSelected;
+    private String networkSelected,storeSelected,addressSelected;
     private List<String> netWorkDataSet,storeDataSet;
 
     @Override
@@ -73,6 +71,12 @@ public class ChooseLocationActivity extends Activity {
                 FirebaseServices.saveAudit(mDatabase,audit,audit.getUid());
 
                 startActivity(new Intent(ChooseLocationActivity.this,SuccessActivity.class));
+
+                SharedPreferences.Editor editor = getSharedPreferences("sfScanner", MODE_PRIVATE).edit();
+                editor.putString("network", networkSelected);
+                editor.putString("store", storeSelected);
+                editor.putString("address", addressSelected);
+                editor.apply();
             }
         });
 
@@ -84,7 +88,7 @@ public class ChooseLocationActivity extends Activity {
                 if(i != 0){
                     networkSelected = netWorkDataSet.get(i);
                     for (Store s : networks.get(i - 1).getStores()){
-                        storeDataSet.add(s.getName() + " " +  s.getAddress());
+                        storeDataSet.add(s.getName() + "-" +  s.getAddress());
                     }
                 }else{
                     storeDataSet.add("Selecione uma loja");
@@ -101,7 +105,9 @@ public class ChooseLocationActivity extends Activity {
         storeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                storeSelected = storeDataSet.get(i);
+                storeSelected = storeDataSet.get(i).substring(0,storeDataSet.get(i).indexOf("-"));
+                addressSelected = storeDataSet.get(i).substring(storeDataSet.get(i).indexOf("-"));
+
             }
 
             @Override

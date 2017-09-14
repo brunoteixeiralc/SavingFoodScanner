@@ -78,6 +78,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences("sfScanner", MODE_PRIVATE);
                 String network = prefs.getString("network", "");
                 String store = prefs.getString("store", "");
+                String address = prefs.getString("address", "");
 
                 if(network.isEmpty() && store.isEmpty()){
                     Intent i = new Intent(ProductDetailActivity.this,ChooseLocationActivity.class);
@@ -88,6 +89,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     i.putExtra("discount",newDiscount);
                     i.putExtra("network",network);
                     i.putExtra("store",store);
+                    i.putExtra("address",address);
                     startActivity(i);
                 }
 
